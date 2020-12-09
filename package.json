@@ -3,11 +3,12 @@
   "version": "1.0.0-alpha.1",
   "private": true,
   "description": "",
-  "main": "lib/server.ms",
+  "main": "lib/server.js",
   "scripts": {
     "lint": "eslint ./",
     "dev": "nodemon -e js,json -i test -w . lib/server.js | pino-pretty",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --bail --reporter spec --recursive",
+    "start": "node lib/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
+    "mongodb": "^3.6.3",
     "p-event": "^4.2.0",
     "pino": "^6.7.0"
   },
@@ -30,7 +32,12 @@
     "eslint": "^7.15.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.1",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.6",
     "pino-pretty": "^4.3.0"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
