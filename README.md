@@ -1,0 +1,3 @@
+# getir records assignment
+
+WIP...
