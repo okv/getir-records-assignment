@@ -72,6 +72,56 @@ describe('records getItems', () => {
 		});
 	});
 
+	describe('with non-existing startDate', () => {
+		it('should return expected response', async () => {
+			const response = await fetch(recordsUrl, {
+				method: 'POST',
+				body: JSON.stringify({
+					startDate: '2020-02-30',
+					endDate: '2020-03-01',
+					minCount: 30,
+					maxCount: 70
+				}),
+				headers: {'content-type': 'application/json'}
+			});
+			const result = await response.json();
+			assert.strictEqual(
+				response.status,
+				400,
+				'response should have status 400'
+			);
+			assert.deepStrictEqual(result, {
+				code: 400,
+				msg: 'Request is malformed'
+			}, 'response content should be as expected');
+		});
+	});
+
+	describe('with non-existing endDate', () => {
+		it('should return expected response', async () => {
+			const response = await fetch(recordsUrl, {
+				method: 'POST',
+				body: JSON.stringify({
+					startDate: '2020-02-01',
+					endDate: '2020-02-30',
+					minCount: 30,
+					maxCount: 70
+				}),
+				headers: {'content-type': 'application/json'}
+			});
+			const result = await response.json();
+			assert.strictEqual(
+				response.status,
+				400,
+				'response should have status 400'
+			);
+			assert.deepStrictEqual(result, {
+				code: 400,
+				msg: 'Request is malformed'
+			}, 'response content should be as expected');
+		});
+	});
+
 	describe('with minCount > maxCount', () => {
 		it('should return expected response', async () => {
 			const response = await fetch(recordsUrl, {

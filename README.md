@@ -7,7 +7,7 @@ for the records resource. See the sections below for more details.
 ## Requirements
 
 * Node.js >= 14
-* MongoDb > 4
+* MongoDb >= 4.2
 
 
 ## Usage
